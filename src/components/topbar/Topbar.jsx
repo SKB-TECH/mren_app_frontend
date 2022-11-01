@@ -8,19 +8,19 @@ const Topbar = () => {
     return (
         <div className='topbarContainer'>
             <div className="topbarLeft">
-                <span>Sumulia</span>
+                <span className='logo'>Sumulia</span>
             </div>
             <div className="topbarCenter">
                 <div className="searchbar">
-                    <GoSearch />
+                    <GoSearch className='searchIcon' />
                     <input type="text" name="" id="" className='searchInput' placeholder='search friend or post' />
                 </div>
             </div>
 
             <div className="topbarRight">
                 <div className="topbartLikns">
-                    <span className='topbarLinks'>Home</span>
-                    <span className='topbarLinks'>Time line</span>
+                    <span className='topbarLink'>Home</span>
+                    <span className='topbarLink'>Time line</span>
                 </div>
                 <div className="topbarIcon">
                     <div className="topbarIconItem">

@@ -1,8 +1,19 @@
 import React from 'react';
 import Topbar from '../../components/topbar/Topbar';
+import Sidebar from '../../components/sidebar/Sidebar'
+import Feed from '../../components/feed/Feed'
+import Rightbar from '../../components/rightBar/Rightbar';
+import "./home.css"
 const Home = () => {
     return (
-        <Topbar />
+        <>
+            <Topbar />
+            <div className="homeContainer">
+                <Sidebar />
+                <Feed />
+                <Rightbar />
+            </div>
+        </>
     );
 };
 
