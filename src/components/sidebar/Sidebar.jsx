@@ -1,5 +1,5 @@
 import "./sidebar.css"
-import { MdRssFeed, MdSlowMotionVideo, MdWorkOutline, MdGroup, MdOutlineBookmark, MdOutlineEvent,MdSchool } from 'react-icons/md'
+import { MdRssFeed, MdSlowMotionVideo, MdWorkOutline, MdGroup, MdOutlineBookmark, MdOutlineEvent, MdSchool } from 'react-icons/md'
 import { BsFillChatLeftTextFill, BsQuestionCircle } from "react-icons/bs"
 
 
@@ -62,6 +62,26 @@ const Sidebar = () => {
                         <span className="sidebarListItemText">
                             Courses
                         </span>
+                    </li>
+                </ul>
+                <button className="sidebarButton">Show more</button>
+                <hr className="sidebarHr" />
+                <ul className="sidebarFriendList">
+                    <li className="sidebarFriend">
+                        <img className="sidebarFriendImg" src="/src/assets/person/benjamin.jpg" alt="" srcset="" />
+                        <span className="sidebarFriendName">Jane Doe</span>
+                    </li>
+                    <li className="sidebarFriend">
+                        <img className="sidebarFriendImg" src="/src/assets/person/benjamin.jpg" alt="" srcset="" />
+                        <span className="sidebarFriendName">Jane Doe</span>
+                    </li>
+                    <li className="sidebarFriend">
+                        <img className="sidebarFriendImg" src="/src/assets/person/benjamin.jpg" alt="" srcset="" />
+                        <span className="sidebarFriendName">Jane Doe</span>
+                    </li>
+                    <li className="sidebarFriend">
+                        <img className="sidebarFriendImg" src="/src/assets/person/benjamin.jpg" alt="" srcset="" />
+                        <span className="sidebarFriendName">Jane Doe</span>
                     </li>
                 </ul>
             </div>
