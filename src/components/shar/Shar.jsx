@@ -1,5 +1,7 @@
 import "./shar.css"
-import { MdOutlinePermMedia } from 'react-icons/md'
+import { MdOutlinePermMedia, MdRoom, MdLabel } from 'react-icons/md'
+import { BsEmojiSmile } from "react-icons/bs"
+
 const Shar = () => {
     return (
         <div className="shar">
@@ -14,11 +16,35 @@ const Shar = () => {
                 <div className="sharBottom">
                     <div className="sharOptions">
                         <div className="sharOption">
-                            <MdOutlinePermMedia className="sharIcon" />
-                            <span className="sharOptionText">Photo or Video</span>
+                            <MdOutlinePermMedia style={{ color: 'tomato' }} className="sharIcon" />
+                            <span className="sharOptionText">Photos or videos</span>
                         </div>
                     </div>
+                    <div className="sharOptions">
+                        <div className="sharOption">
+                            <MdLabel style={{ color: 'blue' }} className="sharIcon" />
+                            <span className="sharOptionText">Label</span>
+                        </div>
+                    </div>
+
+                    {/* un */}
+                    <div className="sharOptions">
+                        <div className="sharOption">
+                            <MdRoom style={{ color: 'green' }} className="sharIcon" />
+                            <span className="sharOptionText"></span>Location
+                        </div>
+                    </div>
+                    {/* deux */}
+                    {/* trois */}
+                    <div className="sharOptions">
+                        <div className="sharOption">
+                            <BsEmojiSmile style={{ color: 'goldenrod' }} className="sharIcon" />
+                            <span className="sharOptionText">Feeling</span>
+                        </div>
+                    </div>
+                    <button className="sharButton">Shar</button>
                 </div>
+
             </div>
         </div>
     );
