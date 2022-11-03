@@ -1,7 +1,8 @@
-import "./sidebar.css"
+import "./ori.css"
+import CloseFriend from "../closeFriend/CloseFriend";
 import { MdRssFeed, MdSlowMotionVideo, MdWorkOutline, MdGroup, MdOutlineBookmark, MdOutlineEvent, MdSchool } from 'react-icons/md'
 import { BsFillChatLeftTextFill, BsQuestionCircle } from "react-icons/bs"
-
+import { Users } from "../../assets/dummyData"
 
 const Sidebar = () => {
     return (
@@ -67,22 +68,11 @@ const Sidebar = () => {
                 <button className="sidebarButton">Show more</button>
                 <hr className="sidebarHr" />
                 <ul className="sidebarFriendList">
-                    <li className="sidebarFriend">
-                        <img className="sidebarFriendImg" src="/src/assets/person/benjamin.jpg" alt="" srcset="" />
-                        <span className="sidebarFriendName">Jane Doe</span>
-                    </li>
-                    <li className="sidebarFriend">
-                        <img className="sidebarFriendImg" src="/src/assets/person/benjamin.jpg" alt="" srcset="" />
-                        <span className="sidebarFriendName">Jane Doe</span>
-                    </li>
-                    <li className="sidebarFriend">
-                        <img className="sidebarFriendImg" src="/src/assets/person/benjamin.jpg" alt="" srcset="" />
-                        <span className="sidebarFriendName">Jane Doe</span>
-                    </li>
-                    <li className="sidebarFriend">
-                        <img className="sidebarFriendImg" src="/src/assets/person/benjamin.jpg" alt="" srcset="" />
-                        <span className="sidebarFriendName">Jane Doe</span>
-                    </li>
+                    {
+                        Users.map((users) => (
+                            <CloseFriend key={users.id} users={users} />
+                        ))
+                    }
                 </ul>
             </div>
         </div>
