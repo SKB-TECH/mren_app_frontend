@@ -1,14 +1,23 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route, Link, Router } from 'react-router-dom'
 import Home from "../src/pages/home/Home"
-import Profile from './pages/profile/Profile';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import Profile from './pages/profile/Profile';
+import Forget from './pages/forget/Forget';
+import './index.css'
 
 const App = () => {
   return (
-    <div>
-      <Home />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path='/' element={<Home />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/register' element={<Register />}></Route>
+        <Route path='/profile/:username' element={<Profile />}></Route>
+        <Route path='/forget' element={<Forget />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 

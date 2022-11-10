@@ -33,7 +33,7 @@
 }
 
 .loginBox {
-    height: 400px;
+    height: 100px;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -41,29 +41,17 @@
     flex-direction: column;
     justify-content: space-between;
 }
-
 .loginInput {
     height: 40px;
     border-radius: 10px;
     border: 1px solid gray;
     font-size: 18px;
-    padding-left: 20px;
 }
 
 .loginInput:focus {
     outline: none;
 }
 
-.loginButton {
-    cursor: pointer;
-    height: 40px;
-    border-radius: 10px;
-    background-color: #1775ee;
-    color: white;
-    border: none;
-    font-size: 20px;
-    font-weight: 500;
-}
 
 .loginForgot {
     text-align: center;
@@ -71,12 +59,12 @@
 }
 
 .loginCreateAccount {
-    width: 70%;
+    width: 100%;
     align-self: center;
     cursor: pointer;
     height: 40px;
     border-radius: 10px;
-    background-color: #42b72a;
+    background-color: #1775ee;
     color: white;
     border: none;
     font-size: 20px;
