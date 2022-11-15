@@ -38,10 +38,9 @@ const Feed = () => {
         posts()
     }, []);
     return (
-        <div className='feed'>
+        <div className='flex flex-col w-[100vw] md:inline-block feed'>
             <div className="feedWrapper">
                 <Shar />
-
                 {
                     Posts.map((post) => (<Post key={post.id} posts={post} />))
                 }

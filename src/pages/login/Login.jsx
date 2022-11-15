@@ -1,9 +1,33 @@
-import React from 'react';
+import { useState } from 'react';
 import chats from "../../assets/images/chat.png"
 import chat from "../../assets/images/vraiChat.svg"
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const Login = () => {
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+    const connection = async (e) => {
+        e.preventDefault()
+        try {
+            const url = "http://localhost:8800/api/auth/login"
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+
+            const result = await response.json();
+            return console.log(result);;
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <main className='flex justify-center items-center h-[100vh] shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] rounded-xl' style={{ backgroundColor: "#ffffff " }}>
             <div style={{ width: "700px", height: "500px" }} className="flex justify-center">
@@ -24,24 +48,21 @@ const Login = () => {
                             <form className="space-y-4 md:space-y-6" action="#">
                                 <div>
                                     <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="" />
+                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="" onChange={(e) => setEmail(e.target.value)} />
                                 </div>
                                 <div>
                                     <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <input type="password" name="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="" />
+                                    <input type="password" name="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="*************" required="" onChange={(e) => setPassword(e.target.value)} />
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-start">
-                                        <div className="flex items-center h-5">
-                                            <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="" />
-                                        </div>
                                         <div className="ml-3 text-sm">
                                             <label for="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                                         </div>
                                     </div>
                                     <Link to="/forget" className="text-sm font-medium text-blue-900 hover:underline dark:text-primary-500">Forgot password?</Link>
                                 </div>
-                                <button type="submit" className="w-full text-white bg-blue-900 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300  rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Connexion</button>
+                                <button type="submit" className="w-full text-white bg-blue-900 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300  rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onClick={connection}>Connexion</button>
                                 <p className="flex justify-end m-2 items-end text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account ? <Link to="/register" className="font-medium text-blue-900 hover:underline dark:text-primary-500">Sign up</Link>
                                 </p>

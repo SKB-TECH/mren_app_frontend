@@ -1,9 +1,38 @@
-import React from 'react';
+import { useState } from 'react';
 import chats from "../../assets/images/chat.png"
 import chat from "../../assets/images/vraiChat.svg"
 import { Link } from 'react-router-dom';
 
+
 const Register = () => {
+    const [name, setName] = useState()
+    const [mail, setMail] = useState()
+    const [pass, setPass] = useState()
+    const createCompte = async (e) => {
+
+        e.preventDefault()
+        try {
+            const url = "http://localhost:8800/api/auth/register"
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: name,
+                    email: mail,
+                    password: pass
+                })
+            });
+
+            const result = await response.json();
+            return console.log(result);;
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <main className='flex justify-center items-center h-[100vh] shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] rounded-xl' style={{ backgroundColor: "#ffffff " }}>
             <div style={{ width: "700px", height: "500px" }} className="flex justify-center">
@@ -23,18 +52,18 @@ const Register = () => {
                             </h1>
                             <form className="space-y-4 md:space-y-6" action="#">
                                 <div>
-                                    <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                                    <input type="text" name="username" id="username" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="benjamin vernau" required="" />
+                                    <label for="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                                    <input type="text" name="username" id="username" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="benjamin vernau" required="" onChange={e => setName(e.target.value)} />
                                 </div>
                                 <div>
                                     <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email adress</label>
-                                    <input type="email" name="email" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="" />
+                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="" onChange={e => setMail(e.target.value)} />
                                 </div>
                                 <div>
-                                    <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <input type="password" name="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="************" required="" />
+                                    <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                    <input type="password" name="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="************" required="" onChange={e => setPass(e.target.value)} />
                                 </div>
-                                <button type="submit" className="w-full text-white bg-blue-900 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300  rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sing In</button>
+                                <button type="submit" className="w-full text-white bg-blue-900 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300  rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onClick={createCompte}>Sing In</button>
                                 <p className="flex justify-end m-2 items-end text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account ? <Link to="/login" className="font-medium text-blue-900 hover:underline dark:text-primary-500">Sing Up</Link>
                                 </p>

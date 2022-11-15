@@ -7,16 +7,16 @@ const Rightbar = ({ profile }) => {
         return (
 
             <>
-                <div className="birthdayContainer">
+                <div className="hidden md:inline-block birthdayContainer">
                     <img className="birthdayImg" src="/src/assets/gift.png" alt="" />
                     <span className="birthdayText">
                         <b>Doddy Matabaro</b> and <b> 3 other friends </b> have to birthday to day
                     </span>
                 </div>
 
-                <img className="rightbarAd" src="/src/assets/person/ad.jpg" alt="" />
-                <h4 className="rightbarTitle">Online Friends</h4>
-                <ul className="rightbarFriendList">
+                <img className="hidden md:inline-block rightbarAd" src="/src/assets/person/ad.jpg" alt="" />
+                <h4 className="hidden md:inline-block rightbarTitle">Online Friends</h4>
+                <ul className="hidden md:inline-block rightbarFriendList">
                     {
                         Users.map((users) => (
                             <Online key={users.id} Users={users} />

@@ -5,6 +5,7 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Profile from './pages/profile/Profile';
 import Forget from './pages/forget/Forget';
+import Message from './pages/message/Message';
 import './index.css'
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route path='/register' element={<Register />}></Route>
         <Route path='/profile/:username' element={<Profile />}></Route>
         <Route path='/forget' element={<Forget />}></Route>
+        <Route path='/message' element={<Message />}></Route>
       </Routes>
     </BrowserRouter>
   );

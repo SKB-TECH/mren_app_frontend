@@ -12,7 +12,7 @@ const Topbar = () => {
                     <span className='logo'>Sumulia</span>
                 </Link>
             </div>
-            <div className="topbarCenter">
+            <div className="hidden md:inline-block topbarCenter">
                 <div className="searchbar">
                     <GoSearch className='searchIcon' />
                     <input type="text" name="" id="" className='searchInput' placeholder='search friend or post' />
@@ -20,7 +20,7 @@ const Topbar = () => {
             </div>
 
             <div className="topbarRight">
-                <div className="topbartLikns">
+                <div className="hidden md:inline-block topbartLikns">
                     <span className='topbarLink'>Home</span>
                     <span className='topbarLink'>Time line</span>
                 </div>
