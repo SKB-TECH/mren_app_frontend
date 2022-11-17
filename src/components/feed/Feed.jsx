@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import Shar from '../shar/Shar';
 import Post from '../post/Post';
 import { Posts } from '../../assets/dummyData.js'
-
+import { useSelector,useDispatch } from 'react-redux';
 
 const Feed = () => {
     const [post, setPost] = useState([])
-
+    const { users } = useSelector(state => state.login)
     useEffect(() => {
-
+        console.log(users)
         const posts = async () => {
             try {
                 const res = await fetch("http://localhost:8800/api/post/636aae363179d8f8a0c9086b", {
@@ -29,7 +29,7 @@ const Feed = () => {
                 }
             }
             catch (error) {
-                console.log(error)
+                
             }
 
         }

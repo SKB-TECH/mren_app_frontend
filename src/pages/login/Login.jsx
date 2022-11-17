@@ -1,13 +1,26 @@
 import { useState } from 'react';
 import chats from "../../assets/images/chat.png"
 import chat from "../../assets/images/vraiChat.svg"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { loginPeding, loginSuccess, loginFailed } from '../../pages/login/loginSlice'
+import { Spinner } from 'react-bootstrap'
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
+    const { isLoading, isAuth, error, users } = useSelector(state => state.login)
+
     const connection = async (e) => {
+        dispatch(loginPeding())
         e.preventDefault()
+        if (!email && !password) {
+            toast.error("email or password is empty")
+        }
+
         try {
             const url = "http://localhost:8800/api/auth/login"
             const response = await fetch(url, {
@@ -19,14 +32,34 @@ const Login = () => {
                     email: email,
                     password: password
                 })
-            });
+            })
+            if (response.statusText == "OK") {
+                const result = await response.json();
+                if (!result) {
+                    dispatch(loginFailed(result.message))
+                }
+                else {
 
-            const result = await response.json();
-            return console.log(result);;
+                    localStorage.setItem('user', result)
+                    dispatch(loginSuccess(result))
+                    if (isAuth) {
+                        navigate('/')
+                    }
+                }
+            }
+
+            else {
+                dispatch(loginFailed(response.statusText))
+                error && toast.error('password or email is invalid')
+            }
+
+            console.log(response)
         }
         catch (err) {
-            console.log(err);
+            dispatch(loginFailed(err))
         }
+
+
     }
     return (
         <main className='flex justify-center items-center h-[100vh] shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] rounded-xl' style={{ backgroundColor: "#ffffff " }}>
@@ -45,7 +78,7 @@ const Login = () => {
                             <h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                 Sign in to your account
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#">
+                            <form className="space-y-4 md:space-y-6" action="#" onSubmit={connection}>
                                 <div>
                                     <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
                                     <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="" onChange={(e) => setEmail(e.target.value)} />
@@ -62,10 +95,18 @@ const Login = () => {
                                     </div>
                                     <Link to="/forget" className="text-sm font-medium text-blue-900 hover:underline dark:text-primary-500">Forgot password?</Link>
                                 </div>
-                                <button type="submit" className="w-full text-white bg-blue-900 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300  rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onClick={connection}>Connexion</button>
+
+                                <button type="submit"
+                                    className="w-full text-white bg-blue-900 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300  rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" >
+                                    {isLoading ? (<h4>loading ...</h4>) : (<h4>Conexion</h4>)}
+                                </button>
+
                                 <p className="flex justify-end m-2 items-end text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account ? <Link to="/register" className="font-medium text-blue-900 hover:underline dark:text-primary-500">Sign up</Link>
                                 </p>
+                                {
+                                    isLoading && <Spinner variant='primary' animation='border' />
+                                }
                             </form>
                         </div>
                     </div>

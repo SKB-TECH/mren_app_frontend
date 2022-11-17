@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import chats from "../../assets/images/chat.png"
 import chat from "../../assets/images/vraiChat.svg"
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { loginPeding, loginSuccess, loginFailed } from '../../pages/login/loginSlice'
 
 const Register = () => {
     const [name, setName] = useState()
     const [mail, setMail] = useState()
     const [pass, setPass] = useState()
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { isLoading, isAuth, error } = useSelector(state => state.login)
     const createCompte = async (e) => {
 
         e.preventDefault()
@@ -23,13 +28,22 @@ const Register = () => {
                     email: mail,
                     password: pass
                 })
-            });
+            })
+            const result = await response.json()
+            if (!result) {
+                dispatch(loginFailed(result.message))
+            }
+            else {
+                dispatch(loginSuccess(result))
+                if (isAuth) {
+                    navigate('/')
+                }
 
-            const result = await response.json();
-            return console.log(result);;
+            }
+
         }
         catch (err) {
-            console.log(err);
+            dispatch(loginFailed(err));
         }
     }
 

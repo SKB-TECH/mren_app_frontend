@@ -1,5 +1,6 @@
 import React from 'react';
 import SidebarMessage from './components/SidebarMessage';
+import Sidebar from '../../components/sidebar/Sidebar';
 
 import Chat from './components/Chat';
 import Topbar from '../../components/topbar/Topbar';

@@ -3,10 +3,8 @@ import Sidebar from '../../../components/sidebar/Sidebar';
 
 const SidebarMessage = () => {
     return (
-        <div className='hidden fixed md:inline-block w-[30%] h-[100%] z-0 p-2 ' style={{ backgroundColor: " #1877f6" }}>
-            <div>
-                Bonjour
-            </div>
+        <div className='hidden flex flex-row  fixed md:inline-block w-[30%] h-[100%] z-0 p-2 ' >
+            <Sidebar />
         </div>
     );
 };
