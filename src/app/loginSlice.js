@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
     isLoading: false,
     isAuth: false,
-    users: [],
+    users: [] || localStorage.getItem('user'),
     error: ''
 }
 const loginSlice = createSlice({
@@ -18,7 +17,7 @@ const loginSlice = createSlice({
         loginSuccess: (state, action) => {
             state.isLoading = false,
                 state.isAuth = true,
-                state.users = action.payload || localStorage.getItem('user'),
+                state.users = action.payload,
                 state.error = ''
         },
         loginFailed: (state, { payload }) => {

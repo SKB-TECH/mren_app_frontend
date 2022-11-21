@@ -3,7 +3,8 @@ import chats from "../../assets/images/chat.png"
 import chat from "../../assets/images/vraiChat.svg"
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { loginPeding, loginSuccess, loginFailed } from '../../pages/login/loginSlice'
+import { loginPeding, loginSuccess, loginFailed } from '../../app/loginSlice'
+import { setRecever, setSender } from "../../app/messageSlice";
 import { Spinner } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -34,17 +35,16 @@ const Login = () => {
                 })
             })
             if (response.statusText == "OK") {
+                toast.success("Welcom to Sumulia ")
                 const result = await response.json();
-                if (!result) {
-                    dispatch(loginFailed(result.message))
-                }
-                else {
 
-                    localStorage.setItem('user', result)
+                localStorage.setItem("token", result.tokens)
+                localStorage.setItem("sender", result.user._id)
+
+                dispatch(setSender(result.user._id))
                     dispatch(loginSuccess(result))
                     if (isAuth) {
-                        navigate('/')
-                    }
+                        navigate('/message')
                 }
             }
 
@@ -52,8 +52,6 @@ const Login = () => {
                 dispatch(loginFailed(response.statusText))
                 error && toast.error('password or email is invalid')
             }
-
-            console.log(response)
         }
         catch (err) {
             dispatch(loginFailed(err))

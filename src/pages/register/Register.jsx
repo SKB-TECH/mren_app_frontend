@@ -3,7 +3,7 @@ import chats from "../../assets/images/chat.png"
 import chat from "../../assets/images/vraiChat.svg"
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { loginPeding, loginSuccess, loginFailed } from '../../pages/login/loginSlice'
+import { loginPeding, loginSuccess, loginFailed } from '../../app/loginSlice'
 
 const Register = () => {
     const [name, setName] = useState()
@@ -12,9 +12,7 @@ const Register = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { isLoading, isAuth, error } = useSelector(state => state.login)
     const createCompte = async (e) => {
-
         e.preventDefault()
         try {
             const url = "http://localhost:8800/api/auth/register"
@@ -35,10 +33,7 @@ const Register = () => {
             }
             else {
                 dispatch(loginSuccess(result))
-                if (isAuth) {
-                    navigate('/')
-                }
-
+                navigate('/login')
             }
 
         }
