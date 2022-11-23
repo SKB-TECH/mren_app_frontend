@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-    isLoading: false,
-    isSuccess: false,
     sender: '',
     recever: '',
     message: [],
+    chats: [],
     error: ''
 }
+
 const messageSlice = createSlice({
-    name: "message",
+    name: "messages",
     initialState,
 
     reducers: {
@@ -21,10 +21,10 @@ const messageSlice = createSlice({
                 state.message = action.payload,
                 state.error = ''
         },
-        setMessage: (state, { payload }) => {
+        addMessage: (state, { payload }) => {
             state.isLoading = false,
                 state.isSuccess = true,
-                state.message = payload,
+                state.message.push(payload),
                 state.error = ''
         },
         messageFailed: (state, { payload }) => {
@@ -36,12 +36,19 @@ const messageSlice = createSlice({
         },
         setRecever: (state, { payload }) => {
             state.recever = payload
+        },
+
+        setChats: (state, { payload }) => {
+            state.chats = payload
+        },
+        getChats: (state, { payload }) => {
+            state.chats.push(payload)
         }
     }
 })
 
 const { reducer, actions } = messageSlice
 
-export const { messagePeding, getMessage, setSender, setRecever, setMessage, messageFailed } = actions
+export const { messagePeding, getMessage, getChats, setChats, setSender, setRecever, addMessage, messageFailed } = actions
 
 export default reducer;

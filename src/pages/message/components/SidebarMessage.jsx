@@ -7,6 +7,7 @@ import { getUsers } from '../../../app/users';
 const SidebarMessage = (props) => {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.users)
+    
     useEffect(() => {
         axios.get('http://localhost:8800/api/user')
             .then((res) => dispatch(getUsers(res.data)))

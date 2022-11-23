@@ -16,7 +16,6 @@ const Sidebar = (props) => {
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
-
                 <button className="sidebarButton">Followers Friends</button>
                 <hr className="sidebarHr" />
                 <ul className="sidebarFriendList">

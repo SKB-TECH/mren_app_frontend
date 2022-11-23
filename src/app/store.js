@@ -6,7 +6,7 @@ import users from './users'
 const store = configureStore({
     reducer: {
         login: loginSlice,
-        message: messageSlice,
+        messages: messageSlice,
         users: users
     }
 })

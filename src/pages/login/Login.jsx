@@ -41,7 +41,7 @@ const Login = () => {
                 localStorage.setItem("token", result.tokens)
                 localStorage.setItem("sender", result.user._id)
 
-                dispatch(setSender(result.user._id))
+                dispatch(setSender(result.user._id) || localStorage.getItem("sender"))
                     dispatch(loginSuccess(result))
                     if (isAuth) {
                         navigate('/message')
@@ -50,6 +50,7 @@ const Login = () => {
 
             else {
                 dispatch(loginFailed(response.statusText))
+                console.log(response.statusText)
                 error && toast.error('password or email is invalid')
             }
         }

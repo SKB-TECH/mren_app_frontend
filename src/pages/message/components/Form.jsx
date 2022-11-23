@@ -3,13 +3,13 @@ import React from 'react';
 import { RiEmotionUnhappyLine, RiSendPlaneFill } from "react-icons/ri"
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { setMessage } from '../../../app/messageSlice';
+import { addMessage, getChats } from '../../../app/messageSlice';
 
 const Forms = () => {
     const [msg, setMsg] = useState()
     const dispatch = useDispatch()
-    const recever = useSelector(state => state.message.recever) || localStorage.getItem('recever')
-    const sender = useSelector(state => state.message.sender) || localStorage.getItem('sender')
+    const recever = useSelector(state => state.messages.recever) || localStorage.getItem('recever')
+    const sender = useSelector(state => state.messages.sender) || localStorage.getItem('sender')
 
 
     const sendMessage = async (e) => {
@@ -28,13 +28,14 @@ const Forms = () => {
             })
             if (response.statusText == "OK") {
                 const result = await response.json();
-                dispatch(setMessage(result.message))
+                dispatch(getChats(result))
             }
 
         } catch (error) {
             console.log(error)
         }
 
+        setMsg("")
     }
 
     return (
