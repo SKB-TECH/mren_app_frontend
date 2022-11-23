@@ -1,16 +1,18 @@
-import React from 'react';
 import "./topbar.css"
 import { GoSearch, GoPerson } from 'react-icons/go'
 import { BsFillChatLeftTextFill } from 'react-icons/bs'
 import { MdNotifications } from 'react-icons/md'
-
+import { Link } from "react-router-dom"
+import Message from "../../pages/message/Message"
 const Topbar = () => {
     return (
         <div className='topbarContainer'>
             <div className="topbarLeft">
-                <span className='logo'>Sumulia</span>
+                <Link to="/" style={{ textDecoration: "none" }}>
+                    <span className='logo'>Sumulia</span>
+                </Link>
             </div>
-            <div className="topbarCenter">
+            <div className="hidden md:inline-block topbarCenter">
                 <div className="searchbar">
                     <GoSearch className='searchIcon' />
                     <input type="text" name="" id="" className='searchInput' placeholder='search friend or post' />
@@ -18,23 +20,29 @@ const Topbar = () => {
             </div>
 
             <div className="topbarRight">
-                <div className="topbartLikns">
+                <div className="hidden md:inline-block topbartLikns">
                     <span className='topbarLink'>Home</span>
                     <span className='topbarLink'>Time line</span>
                 </div>
                 <div className="topbarIcon">
                     <div className="topbarIconItem">
+                        <Link>
                         <GoPerson />
                         <span className='topbarIconBadge'>1</span>
+                        </Link>
                     </div>
                     <div className="topbarIconItem">
-                        <BsFillChatLeftTextFill />
-                        <span className='topbarIconBadge'>3</span>
+                        <Link to='/message'>
+                            <BsFillChatLeftTextFill />
+                            <span className='topbarIconBadge'>3</span>
+                        </Link>
                     </div>
 
                     <div className="topbarIconItem">
-                        <MdNotifications />
-                        <span className='topbarIconBadge'>3</span>
+                        <Link to='/Message'>
+                            <MdNotifications />
+                            <span className='topbarIconBadge'>3</span>
+                        </Link>
                     </div>
                 </div>
                 <img src="/src/assets/person/1.jpg" alt="" className='topbarImage' />

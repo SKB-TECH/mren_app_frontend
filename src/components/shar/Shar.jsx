@@ -4,7 +4,7 @@ import { BsEmojiSmile } from "react-icons/bs"
 
 const Shar = () => {
     return (
-        <div className="shar">
+        <div className="shar ">
             <div className="sharWrapper">
                 <div className="sharTop">
                     <img src="/src/assets/person/benjamin.jpg" alt="" className="sharProfileImg" />
@@ -13,17 +13,17 @@ const Shar = () => {
                     />
                 </div>
                 <hr className="sharHr" />
-                <div className="sharBottom">
+                <div className="flex   sharBottom">
                     <div className="sharOptions">
                         <div className="sharOption">
-                            <MdOutlinePermMedia style={{ color: 'tomato' }} className="sharIcon" />
-                            <span className="sharOptionText">Photos or videos</span>
+                            <MdOutlinePermMedia style={{ color: 'tomato' }} className=" sharIcon" />
+                            <span className="hidden sharOptionText">Photos or videos</span>
                         </div>
                     </div>
                     <div className="sharOptions">
                         <div className="sharOption">
                             <MdLabel style={{ color: 'blue' }} className="sharIcon" />
-                            <span className="sharOptionText">Label</span>
+                            <span className="hidden sharOptionText">Label</span>
                         </div>
                     </div>
 
@@ -31,7 +31,7 @@ const Shar = () => {
                     <div className="sharOptions">
                         <div className="sharOption">
                             <MdRoom style={{ color: 'green' }} className="sharIcon" />
-                            <span className="sharOptionText"></span>Location
+                            <span className="hidden sharOptionText"></span>Location
                         </div>
                     </div>
                     {/* deux */}
@@ -39,10 +39,10 @@ const Shar = () => {
                     <div className="sharOptions">
                         <div className="sharOption">
                             <BsEmojiSmile style={{ color: 'goldenrod' }} className="sharIcon" />
-                            <span className="sharOptionText">Feeling</span>
+                            <span className="hidden sharOptionText">Feeling</span>
                         </div>
                     </div>
-                    <button className="sharButton">Shar</button>
+                    <button className=" sharButton">Shar</button>
                 </div>
 
             </div>
