@@ -18,35 +18,7 @@ const Topbar = () => {
                     <input type="text" name="" id="" className='searchInput' placeholder='search friend or post' />
                 </div>
             </div>
-
-            <div className="topbarRight">
-                <div className="hidden md:inline-block topbartLikns">
-                    <span className='topbarLink'>Home</span>
-                    <span className='topbarLink'>Time line</span>
-                </div>
-                <div className="topbarIcon">
-                    <div className="topbarIconItem">
-                        <Link>
-                        <GoPerson />
-                        <span className='topbarIconBadge'>1</span>
-                        </Link>
-                    </div>
-                    <div className="topbarIconItem">
-                        <Link to='/message'>
-                            <BsFillChatLeftTextFill />
-                            <span className='topbarIconBadge'>3</span>
-                        </Link>
-                    </div>
-
-                    <div className="topbarIconItem">
-                        <Link to='/Message'>
-                            <MdNotifications />
-                            <span className='topbarIconBadge'>3</span>
-                        </Link>
-                    </div>
-                </div>
-                <img src="/src/assets/person/1.jpg" alt="" className='topbarImage' />
-            </div>
+           
         </div>
     );
 };

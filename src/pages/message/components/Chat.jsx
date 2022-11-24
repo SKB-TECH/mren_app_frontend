@@ -25,7 +25,7 @@ const Chat = () => {
         fecthMessages()
     }, [])
     return (
-        <div className='flex flex-col  sm:ml-[30%]  w-[100vw] h-fit md:w-[70vw]'>
+        <div className='flex flex-col z-0 h-fit md:w-[70vw] ml-[30%] '>
             <div className='flex flex-col  sm:justify-between pb-14'>
                 <h1 className='text-gray-200 text-xl text-center'>message list</h1>
                 <Send />

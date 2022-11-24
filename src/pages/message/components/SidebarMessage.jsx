@@ -14,7 +14,7 @@ const SidebarMessage = (props) => {
     }, [])
 
     return (
-        <div className='hidden flex flex-row  fixed md:inline-block w-[30%] h-[100%] z-0 p-2 ' >
+        <div className='flex flex-row z-20  h-full fixed md:w-[30%]' >
             <Sidebar setContact={props.setContact} />
         </div>
     );

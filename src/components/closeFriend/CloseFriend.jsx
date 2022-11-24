@@ -10,19 +10,18 @@ const CloseFriend = ({ users }) => {
     localStorage.setItem('recever', useSelector(state => state.messages.recever))
     const messages = useSelector(state => state.messages.message)
     const chat = useSelector(state => state.messages.chats)
+
+    // Cette fonction sert a trier les messages selon l'utilisateur selectionne
     const creatChat = (recever) => {
         dispatch(setChats(messages.message?.filter((sms) => {
             return (sms.sender == recever) || (sms.recever == recever)
         })))
-
-        console.log("Chat", chat)
     }
-
 
 
     return (
         <li className=" flex m-2 sidebarFriend cursor-pointer " onClick={() => { creatChat(users._id), dispatch(setRecever(users._id)) }}>
-            <div className=" flex cursor-pointer position-relative" >
+            <div className="flex cursor-pointer" >
                 <img className="position-relative sidebarFriendImg" src={avatar} alt="" />
                 <span className={`flex mt-2 text-gray-500 sidebarFriendNam`} key={users._id}>{users.username}
                 </span>
