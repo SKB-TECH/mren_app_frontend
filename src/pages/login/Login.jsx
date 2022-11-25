@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import chats from "../../assets/images/chat.png"
 import chat from "../../assets/images/vraiChat.svg"
-import { Link, useNavigate } from 'react-router-dom'
+import { isRouteErrorResponse, Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { loginPeding, loginSuccess, loginFailed } from '../../app/loginSlice'
 import { setRecever, setSender } from "../../app/messageSlice";
@@ -34,7 +34,9 @@ const Login = () => {
                     password: password
                 })
             })
-            if (response.statusText == "OK") {
+            
+          
+            if (response[statusText] == "OK") {
                 toast.success("Welcom to Sumulia ")
                 const result = await response.json();
 
@@ -50,7 +52,6 @@ const Login = () => {
 
             else {
                 dispatch(loginFailed(response.statusText))
-                console.log(response.statusText)
                 error && toast.error('password or email is invalid')
             }
         }

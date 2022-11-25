@@ -12,7 +12,6 @@ import Chat from './components/Chat'
             <div className='flex justify-between h-[100%]'>
                 <SidebarMessage />
                 <Chat/> 
-              
             </div>
         </div>
     );
