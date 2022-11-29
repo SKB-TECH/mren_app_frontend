@@ -20,7 +20,7 @@ const Login = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
+    const localhost = import.meta.env.VITE_BASE_BACK
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const { isLoading, isAuth, error, users } = useSelector(state => state.login)
@@ -34,7 +34,7 @@ const Login = () => {
         }
 
         try {
-            const url = "http://localhost:8800/api/auth/login"
+            const url = `${localhost}/api/auth/login`
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {

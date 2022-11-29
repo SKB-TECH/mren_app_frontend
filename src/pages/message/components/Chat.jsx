@@ -6,11 +6,12 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMessage } from '../../../app/messageSlice';
+import dotenv from 'dotenv'
 
 const Chat = () => {
     const dispatch = useDispatch()
     const sender = localStorage.getItem('sender')
-    const API_URI = 'http://localhost:8800'
+    const API_URI = import.meta.env.VITE_BASE_BACKEND
     useEffect(() => {
         const fecthMessages = async () => {
             if (sender) {
