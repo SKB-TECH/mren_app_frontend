@@ -1,20 +1,31 @@
 import { useState } from 'react';
 import chats from "../../assets/images/chat.png"
 import chat from "../../assets/images/vraiChat.svg"
-import { Link, useNavigate } from 'react-router-dom'
+import { isRouteErrorResponse, Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { loginPeding, loginSuccess, loginFailed } from '../../app/loginSlice'
 import { setRecever, setSender } from "../../app/messageSlice";
 import { Spinner } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify';
+import { useContext } from 'react';
 
+
+
+//const socket = io.connect("http://localhost:8800")
 const Login = () => {
+    const socket = useSelector(state => state.socket.socket)
+    socket.on('connection', null);
+
+    
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const { isLoading, isAuth, error, users } = useSelector(state => state.login)
-
+    console.log(chat)
+    
     const connection = async (e) => {
         dispatch(loginPeding())
         e.preventDefault()
@@ -34,6 +45,8 @@ const Login = () => {
                     password: password
                 })
             })
+            
+          
             if (response.statusText == "OK") {
                 toast.success("Welcom to Sumulia ")
                 const result = await response.json();
@@ -50,7 +63,6 @@ const Login = () => {
 
             else {
                 dispatch(loginFailed(response.statusText))
-                console.log(response.statusText)
                 error && toast.error('password or email is invalid')
             }
         }

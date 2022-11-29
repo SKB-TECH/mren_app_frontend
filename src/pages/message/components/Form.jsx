@@ -1,42 +1,36 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import React from 'react';
 import { RiEmotionUnhappyLine, RiSendPlaneFill } from "react-icons/ri"
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage, getChats } from '../../../app/messageSlice';
+import { StateContext } from '../../../Context/contextApi'
 
 const Forms = () => {
+
+    const { contenu, setContenu } = useContext(StateContext)
     const [msg, setMsg] = useState()
+    const [msg2, setMsg2] = useState([])
     const dispatch = useDispatch()
+
     const recever = useSelector(state => state.messages.recever) || localStorage.getItem('recever')
     const sender = useSelector(state => state.messages.sender) || localStorage.getItem('sender')
+    const socket = useSelector(state => state.socket.socket)
 
-
-    const sendMessage = async (e) => {
+    const sendMessage = (e) => {
         e.preventDefault()
-        try {
-            const url = `http://localhost:8800/api/message/new/${sender}`
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message: msg,
-                    recever: recever
-                })
-            })
-            if (response.statusText == "OK") {
-                const result = await response.json();
-                dispatch(getChats(result))
-            }
-
-        } catch (error) {
-            console.log(error)
-        }
-
+        socket.emit('new', {
+            sender,
+            msg,
+            recever
+        })
         setMsg("")
     }
+
+    socket.on('msgsend', (data) => {
+        dispatch(getChats(data))
+        // setContenu(...contenu, contenu)
+    })
 
     return (
         <div className='flex bg-white border-1  w-[100vw]'>
@@ -54,4 +48,4 @@ const Forms = () => {
     );
 };
 
-export default Forms;
+export default React.memo(Forms);
