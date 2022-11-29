@@ -37,7 +37,6 @@ const messageSlice = createSlice({
         setRecever: (state, { payload }) => {
             state.recever = payload
         },
-
         setChats: (state, { payload }) => {
             state.chats = payload
         },

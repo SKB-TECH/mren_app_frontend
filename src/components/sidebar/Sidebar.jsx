@@ -15,10 +15,10 @@ const Sidebar = (props) => {
 
     return (
         <div className="sidebar">
-            <div className="sidebarWrapper">
+            <div className="sidebarWrapper ">
                 <button className="sidebarButton">Followers Friends</button>
                 <hr className="sidebarHr" />
-                <ul className="sidebarFriendList">
+                <ul className="sidebarFriendList ">
                     {
                         user.map((users) => (
                             <CloseFriend key={users._id} users={users} />

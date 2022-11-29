@@ -1,29 +1,29 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { StateContext } from '../../../Context/contextApi';
 
 const Send = () => {
-
     const chats = useSelector(state => state.messages.chats)
+    const { contenu, setContenu } = useContext(StateContext)
     return (
-        <div className='flex  flex-col justify-between w-full'>
+        <div className='p-5'>
             {
                 chats ? chats.map((sms) => {
                     if (sms.sender === localStorage.getItem('sender')) {
                         return (
-                            <div className='flex flex-start'>
+                            <div className='h-fit mt-10 flex justify-start'>
                                 <span className='bg-gray-300 flex flex-col text-black p-3 m-2 h-fit rounded-r-3xl rounded-bl-3xl '>
                                     {
                                         sms.message
                                     }
-
                                 </span>
                             </div>
                         )
                     } else {
                         return (
-                            <div className='flex flex-end'>
-                                <span className='bg-[blue] flex-end flex flex-col p-3 m-2 h-fit rounded-l-3xl rounded-br-3xl text-gray-100'>
+                            <div className='h-fit flex  justify-end ml-10'>
+                                <span className='bg-[blue]  flex flex-col p-3 m-2 h-fit rounded-l-3xl rounded-br-3xl text-gray-100 '>
                                     {
                                         sms.message
                                     }
@@ -39,4 +39,4 @@ const Send = () => {
     )
 }
 
-export default Send;
+export default React.memo(Send);
