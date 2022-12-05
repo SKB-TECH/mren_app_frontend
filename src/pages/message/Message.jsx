@@ -1,11 +1,10 @@
-
-import { React, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SidebarMessage from './components/SidebarMessage';
 import Topbar from '../../components/topbar/Topbar';
 import Chat from './components/Chat'
-    
-  const Message=()=>{  
+import React from 'react'
 
+const Message = () => {  
     return (
         <div className='h-[100vh]'>
             <Topbar />
@@ -15,5 +14,6 @@ import Chat from './components/Chat'
             </div>
         </div>
     );
-            }
-export default Message;
+}
+
+export default React.memo(Message);

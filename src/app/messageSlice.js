@@ -41,7 +41,9 @@ const messageSlice = createSlice({
             state.chats = payload
         },
         getChats: (state, { payload }) => {
-            state.chats.push(payload)
+            const ids = state.chats.map(el => el._id)
+            if (ids.includes(payload._id)) { }
+            else { state.chats.push(payload) }
         }
     }
 })

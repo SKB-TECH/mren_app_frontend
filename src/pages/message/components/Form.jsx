@@ -1,36 +1,43 @@
-import { useRef, useState, useContext } from 'react';
-import React from 'react';
+import { useRef, useState, useContext, useEffect } from 'react';
 import { RiEmotionUnhappyLine, RiSendPlaneFill } from "react-icons/ri"
-import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage, getChats } from '../../../app/messageSlice';
-import { StateContext } from '../../../Context/contextApi'
+import openSocket from 'socket.io-client';
+import React from 'react';
+import { chainPropTypes } from '@mui/utils';
+import axios from 'axios';
+import { getMessage } from '../../../app/messageSlice';
 
+
+const url = import.meta.env.VITE_URL_BACK
+const socket = openSocket(url)
 const Forms = () => {
-
-    const { contenu, setContenu } = useContext(StateContext)
+    const [msgContent, setmsgContent] = useState()
     const [msg, setMsg] = useState()
-    const [msg2, setMsg2] = useState([])
     const dispatch = useDispatch()
 
     const recever = useSelector(state => state.messages.recever) || localStorage.getItem('recever')
     const sender = useSelector(state => state.messages.sender) || localStorage.getItem('sender')
-    const socket = useSelector(state => state.socket.socket)
 
-    const sendMessage = (e) => {
+    const sendMessage = async (e) => {
         e.preventDefault()
-        socket.emit('new', {
-            sender,
-            msg,
-            recever
-        })
-        setMsg("")
+        await fetch(`${url}/api/message/new/${sender}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                sender,
+                message: msg,
+                recever
+            })
+        },
+        ).then(res => res.json())
+            .then(res => dispatch(getChats(res)))
+            .then(res => console.log(res))
+        setMsg('')
     }
 
-    socket.on('msgsend', (data) => {
-        dispatch(getChats(data))
-        // setContenu(...contenu, contenu)
-    })
 
     return (
         <div className='flex bg-white border-1  w-[100vw]'>

@@ -1,8 +1,9 @@
-import { React, useEffect } from 'react';
+import { useEffect } from 'react';
 import Sidebar from '../../../components/sidebar/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { getUsers } from '../../../app/users';
+import React from 'react'
 
 const SidebarMessage = (props) => {
     const dispatch = useDispatch()
@@ -20,4 +21,4 @@ const SidebarMessage = (props) => {
     );
 };
 
-export default SidebarMessage;
+export default React.memo(SidebarMessage);
