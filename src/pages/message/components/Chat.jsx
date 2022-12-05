@@ -1,16 +1,19 @@
 import React from 'react';
 import Forms from './Form';
 import Send from './Send';
-import Recever from "./Recever"
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMessage } from '../../../app/messageSlice';
+import dotenv from 'dotenv'
+import openSocket from 'socket.io-client';
 
+const user = localStorage.getItem('sender')
+const API_URI = import.meta.env.VITE_URL_BACK
 const Chat = () => {
     const dispatch = useDispatch()
     const sender = localStorage.getItem('sender')
-    const API_URI = 'http://localhost:8800'
+
     useEffect(() => {
         const fecthMessages = async () => {
             if (sender) {
@@ -23,7 +26,10 @@ const Chat = () => {
             }
         }
         fecthMessages()
-    }, [])
+
+    }, [sender])
+
+
     return (
         <div className='flex flex-col z-0 h-fit md:w-[70vw] ml-[30%] '>
             <div className='flex flex-col  sm:justify-between pb-14'>

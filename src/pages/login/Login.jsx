@@ -8,35 +8,28 @@ import { setRecever, setSender } from "../../app/messageSlice";
 import { Spinner } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify';
 import { useContext } from 'react';
+import openSocket from 'socket.io-client'
 
 
-
-//const socket = io.connect("http://localhost:8800")
+const API_URI = import.meta.env.VITE_URL_BACK
 const Login = () => {
-    const socket = useSelector(state => state.socket.socket)
-    socket.on('connection', null);
-
-    
-
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const localhost = import.meta.env.VITE_BASE_BACK
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const { isLoading, isAuth, error, users } = useSelector(state => state.login)
-    console.log(chat)
-    
+
     const connection = async (e) => {
         dispatch(loginPeding())
         e.preventDefault()
         if (!email && !password) {
             toast.error("email or password is empty")
         }
-
         try {
-            const url = "http://localhost:8800/api/auth/login"
-            const response = await fetch(url, {
-                method: 'POST',
+            const response = await fetch(`${import.meta.env.VITE_URL_BACK}/api/auth/login`, {
+                method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -45,8 +38,7 @@ const Login = () => {
                     password: password
                 })
             })
-            
-          
+
             if (response.statusText == "OK") {
                 toast.success("Welcom to Sumulia ")
                 const result = await response.json();
@@ -60,7 +52,6 @@ const Login = () => {
                         navigate('/message')
                 }
             }
-
             else {
                 dispatch(loginFailed(response.statusText))
                 error && toast.error('password or email is invalid')
@@ -72,6 +63,7 @@ const Login = () => {
 
 
     }
+
     return (
         <main className='flex justify-center items-center h-[100vh] shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] rounded-xl' style={{ backgroundColor: "#ffffff " }}>
             <div style={{ width: "700px", height: "500px" }} className="flex justify-center">
@@ -126,6 +118,7 @@ const Login = () => {
         </main>
     );
 };
+
 
 export default Login;
 

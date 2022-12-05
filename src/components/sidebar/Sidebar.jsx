@@ -9,14 +9,21 @@ const Sidebar = (props) => {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.users.users)
     useEffect(() => {
-        axios.get('http://localhost:8800/api/user')
-            .then((res) => dispatch(getUsers(res.data)))
+
+        const fecthUser = async () => {
+            if (user) {
+                axios.get('http://localhost:8800/api/user')
+                    .then((res) => dispatch(getUsers(res.data)))
+            }
+        }
+        fecthUser()
+
     }, [])
 
     return (
         <div className="sidebar">
             <div className="sidebarWrapper ">
-                <button className="sidebarButton">Followers Friends</button>
+                <button className="sidebarButton items-center justify-center mt-2">Followers Friends</button>
                 <hr className="sidebarHr" />
                 <ul className="sidebarFriendList ">
                     {
