@@ -5,16 +5,14 @@ import axios from 'axios';
 import { getMessage } from '../../../app/messageSlice';
 import openSocket from 'socket.io-client';
 import { addMessage, getChats } from '../../../app/messageSlice';
-const url = import.meta.env.VITE_URL_BACK
 
 
+const url = import.meta.env.VITE_BASE_BACK;
 const Send = () => {
     const dispatch = useDispatch()
     const socket = openSocket(url)
     const chats = useSelector(state => state.messages.chats);
     const sender = useSelector(state => state.messages.sender) || localStorage.getItem('sender')
-
-
 
     return (
         <div className='p-5'>

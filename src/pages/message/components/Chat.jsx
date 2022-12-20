@@ -9,7 +9,7 @@ import dotenv from 'dotenv'
 import openSocket from 'socket.io-client';
 
 const user = localStorage.getItem('sender')
-const API_URI = import.meta.env.VITE_URL_BACK
+const API_URI = import.meta.env.VITE_BASE_BACK
 const Chat = () => {
     const dispatch = useDispatch()
     const sender = localStorage.getItem('sender')

@@ -28,7 +28,7 @@ const Login = () => {
             toast.error("email or password is empty")
         }
         try {
-            const response = await fetch(`${import.meta.env.VITE_URL_BACK}/api/auth/login`, {
+            const response = await fetch(`${import.meta.env.VITE_BASE_BACK}/api/auth/login`, {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json'
@@ -84,11 +84,11 @@ const Login = () => {
                             <form className="space-y-4 md:space-y-6" action="#" onSubmit={connection}>
                                 <div>
                                     <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="" onChange={(e) => setEmail(e.target.value)} />
+                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 outline-none text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="" onChange={(e) => setEmail(e.target.value)} />
                                 </div>
                                 <div>
                                     <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <input type="password" name="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="*************" required="" onChange={(e) => setPassword(e.target.value)} />
+                                    <input type="password" name="password" id="password" className="bg-gray-50 outline-none border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="*************" required="" onChange={(e) => setPassword(e.target.value)} />
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-start">

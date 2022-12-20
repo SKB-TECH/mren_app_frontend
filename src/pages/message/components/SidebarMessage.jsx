@@ -5,12 +5,13 @@ import axios from 'axios';
 import { getUsers } from '../../../app/users';
 import React from 'react'
 
+const URL = import.meta.env.VITE_BASE_BACK
 const SidebarMessage = (props) => {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.users)
     
     useEffect(() => {
-        axios.get('http://localhost:8800/api/user')
+        axios.get(`${URL}/api/user`)
             .then((res) => dispatch(getUsers(res.data)))
     }, [])
 

@@ -9,7 +9,7 @@ import axios from 'axios';
 import { getMessage } from '../../../app/messageSlice';
 
 
-const url = import.meta.env.VITE_URL_BACK
+const url = import.meta.env.VITE_BASE_BACK;
 const socket = openSocket(url)
 const Forms = () => {
     const [msgContent, setmsgContent] = useState()
